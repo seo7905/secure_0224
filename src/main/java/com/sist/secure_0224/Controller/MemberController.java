@@ -1,6 +1,8 @@
 package com.sist.secure_0224.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,10 +11,6 @@ import com.sist.secure_0224.service.MemberService;
 import com.sist.secure_0224.vo.MemVO;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -45,7 +43,11 @@ public class MemberController {
     @PostMapping("reg")
     public ModelAndView register(MemVO vo) {
         // 서비스를 이용하여 회원등록!
-        int cnt = m_Service.regMember(vo);
+        int cnt = m_Service.regMember(vo); // 이때 vo에 m_idx가 채워짐
+
+        // 저장 후 기본키가 있는지 검사
+        System.out.println("멤버기본키:"+vo.getM_idx());
+
         ModelAndView mv = new ModelAndView();
 
         if (cnt > 0) {

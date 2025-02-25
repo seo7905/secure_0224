@@ -6,9 +6,9 @@
 
 
     <!-- 회원등록 -->
-    <insert id="reg" parameterType="com.sist.secure_0224.vo.MemVO">
-        INSERT INTO member_t(m_id, m_pw, m_name)
-        VALUE(#{m_id}, #{m_pw}, #{m_name})
+    <insert id="reg" parameterType="com.sist.secure_0224.vo.MemVO" useGeneratedKeys="true" keyProperty="m_idx">
+        INSERT INTO member_t (m_id, m_pw, m_name)
+        VALUES (#{m_id}, #{m_pw}, #{m_name});
     </insert>
 
     <!-- 회원로그인 -->
